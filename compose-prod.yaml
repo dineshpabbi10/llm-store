@@ -1,0 +1,17 @@
+services:
+  backend-prod:
+    build:
+      context: ./llm-store-backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 4000:4000
+  ui-prod:
+    build:
+      context: ./llm-store-ui
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend-prod

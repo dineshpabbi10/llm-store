@@ -1,0 +1,9 @@
+FROM node:20.11.1-alpine3.19
+# Set working directory inside container
+WORKDIR /ui
+# Copy package.json & package-lock.json
+COPY package.json package-lock.json ./
+# Install dev + prod dependencies
+RUN npm install
+# Start Server
+CMD ["npm","run","dev"]
