@@ -1,12 +1,27 @@
 services:
-  app:
-    entrypoint:
-    - sleep
-    - infinity
-    image: docker/dev-environments-default:stable-1
-    init: true
+  backend-dev:
+    build:
+      context: ./llm-store-backend
+      dockerfile: Dockerfile.dev
+    restart: always
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - 4000:4000
     volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+      - ./llm-store-backend:/app
+  ui-dev:
+    build:
+      context: ./llm-store-ui
+      dockerfile: Dockerfile.dev
+    restart: always
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./llm-store-ui:/ui
+    depends_on:
+      - backend-dev
+    
 

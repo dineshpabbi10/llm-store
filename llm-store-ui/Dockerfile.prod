@@ -1,0 +1,30 @@
+###########################################
+#     Stage for Dependencies & build
+###########################################
+FROM node:20.11.1-alpine3.19 as buildStage
+# Set working directory inside container
+WORKDIR /ui
+# Copy package.json & package-lock.json
+COPY package.json package-lock.json ./
+# Install Dependencies
+RUN npm install
+# Copy all source files
+COPY . ./
+# Generate Build
+RUN npm run build
+
+
+###########################################
+#     Stage for Starting Server
+###########################################
+FROM node:20.11.1-alpine3.19 as serveStage
+# Set current working directory to /app within container
+WORKDIR /app
+# Copy files from buildStage
+COPY --from=buildStage /ui/.next /app/.next
+COPY --from=buildStage /ui/public /app/public
+COPY --from=buildStage /ui/package.json /ui/package-lock.json ./ 
+# Install production dependencies only
+RUN npm install --omit=dev && npm cache clean --force
+# Start nextjs server
+CMD ["npm","run","start"]

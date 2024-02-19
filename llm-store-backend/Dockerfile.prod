@@ -1,0 +1,33 @@
+###########################################
+#     Stage for Dependencies & build
+###########################################
+
+
+FROM node:20.11.1-alpine3.19 as buildFiles
+# Set working directory inside container
+WORKDIR /app
+# Copy package.json & package-lock.json
+COPY package.json package-lock.json ./
+# Install node packages
+RUN npm i
+# Copy all source code
+COPY . ./
+# Generate production build files for server
+RUN npm run build
+
+
+###########################################
+#     Stage for starting server
+###########################################
+
+FROM node:20.11.1-alpine3.19 as server 
+# Set current working directory to /server within container
+WORKDIR /server
+ENV NODE_ENV=production
+# Only install production dependencies and override old dependencies
+COPY package.json package-lock.json ./
+RUN npm install --omit=dev && npm cache clean --force
+# Copy build files from previous stage
+COPY --from=buildFiles /app/dist/ ./dist/
+# Start nest.js server
+CMD ["node","./dist/main"]
