@@ -10,6 +10,7 @@ services:
       - 4000:4000
     volumes:
       - ./llm-store-backend:/app
+      - /app/node_modules
   ui-dev:
     build:
       context: ./llm-store-ui
@@ -21,6 +22,7 @@ services:
       - 3000:3000
     volumes:
       - ./llm-store-ui:/ui
+      - /ui/node_modules
     depends_on:
       - backend-dev
     
