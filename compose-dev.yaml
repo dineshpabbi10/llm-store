@@ -25,5 +25,14 @@ services:
       - /ui/node_modules
     depends_on:
       - backend-dev
+  nginx-server:
+    build:
+      context: ./nginx
+      dockerfile : Dockerfile.dev
+    ports:
+    - "80:80"
+    depends_on:
+      - backend-dev
+      - ui-dev
     
 

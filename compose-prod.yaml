@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
       - 4000:4000
+
   ui-prod:
     build:
       context: ./llm-store-ui
@@ -15,3 +16,26 @@ services:
       - 3000:3000
     depends_on:
       - backend-prod
+
+  nginx-server:
+    build:
+      context: ./nginx
+      dockerfile : Dockerfile.prod
+    ports:
+    - "80:80"
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - backend-prod
+      - ui-prod
+  
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@gmail.com -d billing.simsanfrasermain.com --agree-tos
+    depends_on:
+      - nginx-server
+  
