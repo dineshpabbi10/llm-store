@@ -17,13 +17,6 @@ services:
     depends_on:
       - backend-prod
 
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@gmail.com -d billing.simsanfrasermain.com --agree-tos
-
   nginx-server:
     build:
       context: ./nginx
@@ -36,4 +29,13 @@ services:
     depends_on:
       - backend-prod
       - ui-prod
+  
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@gmail.com -d billing.simsanfrasermain.com --agree-tos
+    depends_on:
+      - nginx-server
   
