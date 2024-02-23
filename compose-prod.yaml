@@ -35,7 +35,7 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@gmail.com -d 40.233.72.93 --agree-tos
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@outlook.com -d dineshpabbi.xyz --agree-tos
     depends_on:
       - nginx-server
   
