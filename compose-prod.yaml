@@ -26,6 +26,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+      - /etc/ssl/dineshpabbi_xyz:/etc/ssl/dineshpabbi_xyz
     depends_on:
       - backend-prod
       - ui-prod
