@@ -23,6 +23,7 @@ services:
       dockerfile : Dockerfile.prod
       args:
         NGINX_HOST: ${DOMAIN_NAME}
+        IS_VERIFICATION : ${IS_VERIFICATION}
     ports:
     - "80:80"
     - "443:443"

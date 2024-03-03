@@ -1,4 +1,13 @@
 FROM nginx:mainline-alpine3.18-perl
 ARG NGINX_HOST
-COPY nginx.prod.conf /etc/nginx/nginx.conf
+ARG IS_FOR_VERIFICATION
+COPY nginx.prod.conf /etc/nginx/nginx.prod.conf
+COPY nginx.prod.verification.conf /etc/nginx/nginx.prod.verification.conf
+
+RUN if [ "$IS_VERIFICATION" = "yes" ]; then \
+        cat /etc/nginx/nginx.prod.conf >> /etc/nginx/nginx.conf; \
+    else \
+        cat /etc/nginx/nginx.prod.verification.conf >> /etc/nginx/nginx.conf; \
+    fi
+
 RUN sed -i "s/\${NGINX_HOST}/${NGINX_HOST}/g" /etc/nginx/nginx.conf
