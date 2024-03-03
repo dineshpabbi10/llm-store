@@ -40,7 +40,7 @@ services:
       - ./certbot/conf/:/etc/letsencrypt/:rw
     environment:
       domain_name: ${DOMAIN_NAME}
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@outlook.com -d ${domain_name} --agree-tos
+    command: ["certonly", "--webroot", "-w", "/var/www/certbot", "--force-renewal", "--email", "dineshpabbi10@outlook.com", "-d", "${DOMAIN_NAME}", "--agree-tos"]
     depends_on:
       - nginx-server
   
