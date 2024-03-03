@@ -26,4 +26,11 @@ IS_VERIFICATION env variable is a flag which tells docker-compose pipeline if we
 ## Initiating Part for this project.
 1. Install latest docker and create an environment for project "llm-store-env"
 2. Pull this repo into the container.
-3. Please update the stack here, so that we can setup the docker env accordingly. 
+3. Please update the stack here, so that we can setup the docker env accordingly.
+
+## Mockups
+![image](https://github.com/dineshpabbi10/llm-store/assets/4069680/33f5c759-32ab-4744-88ed-058bb89cbeb0)
+![image](https://github.com/dineshpabbi10/llm-store/assets/4069680/99f79acb-da17-4b3e-9704-fa7dbc1079e8)
+![image](https://github.com/dineshpabbi10/llm-store/assets/4069680/7accee38-169c-4bd9-9357-e26a8ec63066)
+
+
