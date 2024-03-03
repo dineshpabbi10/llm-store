@@ -27,6 +27,8 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
     depends_on:
       - backend-prod
       - ui-prod
@@ -36,7 +38,9 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@outlook.com -d app.dineshpabbi.xyz --agree-tos
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email dineshpabbi10@outlook.com -d $DOMAIN_NAME --agree-tos
     depends_on:
       - nginx-server
   
