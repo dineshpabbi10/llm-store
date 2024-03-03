@@ -1,6 +1,6 @@
 FROM nginx:mainline-alpine3.18-perl
 ARG NGINX_HOST
-ARG IS_FOR_VERIFICATION
+ARG IS_VERIFICATION
 COPY nginx.prod.conf /etc/nginx/nginx.prod.conf
 COPY nginx.verification.conf /etc/nginx/nginx.verification.conf
 
