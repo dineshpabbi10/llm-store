@@ -27,7 +27,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    environment:
+    args:
       NGINX_HOST: ${DOMAIN_NAME}
     depends_on:
       - backend-prod

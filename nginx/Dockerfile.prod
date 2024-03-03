@@ -1,3 +1,4 @@
 FROM nginx:mainline-alpine3.18-perl
-
+ARG NGINX_HOST
 COPY nginx.prod.conf /etc/nginx/nginx.conf
+RUN sed -i "s/\${NGINX_HOST}/${NGINX_HOST}/g" /etc/nginx/nginx.conf
