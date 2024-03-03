@@ -4,7 +4,7 @@ ARG IS_FOR_VERIFICATION
 COPY nginx.prod.conf /etc/nginx/nginx.prod.conf
 COPY nginx.verification.conf /etc/nginx/nginx.verification.conf
 
-RUN if [ "$IS_VERIFICATION" = "yes" ]; then \
+RUN if [ "$IS_VERIFICATION" = "no" ]; then \
         cat /etc/nginx/nginx.prod.conf > /etc/nginx/nginx.conf; \
     else \
         cat /etc/nginx/nginx.verification.conf > /etc/nginx/nginx.conf; \
