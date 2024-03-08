@@ -28,6 +28,13 @@ IS_VERIFICATION env variable is a flag which tells docker-compose pipeline if we
 2. Pull this repo into the container.
 3. Please update the stack here, so that we can setup the docker env accordingly.
 
+## Database Dev Server (Postgres)
+```
+Host : 132.145.111.34
+Port : 80
+Username : postgres
+```
+
 ## Mockups
 ![image](https://github.com/dineshpabbi10/llm-store/assets/4069680/33f5c759-32ab-4744-88ed-058bb89cbeb0)
 ![image](https://github.com/dineshpabbi10/llm-store/assets/4069680/99f79acb-da17-4b3e-9704-fa7dbc1079e8)
