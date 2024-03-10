@@ -8,12 +8,8 @@ This is web base project for hosting api's to llm store submitted by the develop
 
 ### Production
 ### If ssl certs were already generated
-- `sudo DOMAIN_NAME=dineshpabbi.xyz IS_VERIFICATION="no" docker compose -f compose-prod.yaml up --remove-orphans` for dev without rebuilding images
 - `sudo DOMAIN_NAME=dineshpabbi.xyz IS_VERIFICATION="no" docker compose -f compose-prod.yaml up --build --remove-orphans` for dev without rebuilding images
-
-### If ssl certs were never generated
 - `sudo DOMAIN_NAME=dineshpabbi.xyz IS_VERIFICATION="yes" docker compose -f compose-prod.yaml up --build --remove-orphans` for dev without rebuilding images
-- `sudo DOMAIN_NAME=dineshpabbi.xyz IS_VERIFICATION="no" docker compose -f compose-prod.yaml up --remove-orphans` for dev without rebuilding images
 
 ##### Explanation 
 DOMAIN_NAME env variable tells what domain should nginx accept requests for on server
