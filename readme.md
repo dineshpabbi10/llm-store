@@ -1,5 +1,5 @@
 # Project : LLM-Store
-This is web base project for hosting api's to llm store submitted by the developer making it a centeralised place to use various bots.
+This is web base project for hosting api's to llm store submitted by the developer making it a centeralized place to use various bots.
 
 ## How to Run
 ### Development
